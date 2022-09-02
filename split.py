@@ -420,7 +420,10 @@ def main(config_path, base_dir, target_path, modes, verbose, use_cache=True):
 
         with open(options.get_undefined_syms_auto_path(), "w", newline="\n") as f:
             for symbol in to_write:
-                f.write(f"{symbol.name} = 0x{symbol.vram_start:X};\n")
+                f.write(f"{symbol.name} = 0x{symbol.vram_start:X};")
+                if symbol.rom is not None:
+                    f.write(f" /* rom 0x{symbol.rom:X} */")
+                f.write("\n")
 
     # print warnings during split
     for segment in all_segments:

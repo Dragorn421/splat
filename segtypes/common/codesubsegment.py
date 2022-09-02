@@ -171,14 +171,19 @@ class CommonSegCodeSubsegment(Segment):
 
                 # Look up for the last function in this boundary
                 func_addr = 0
+                func_rom_start = 0
+                func_rom_end = 0
                 for func in self.text_section.symbolList:
                     funcOffset = func.inFileOffset - self.text_section.inFileOffset
                     if in_file_offset == funcOffset:
                         break
                     func_addr = func.vram
+                    func_rom_start = func.vromStart
+                    func_rom_end = func.vromEnd
 
                 print(
-                    f"Segment {self.name}, function at vram {func_addr:X} ends with extra nops, indicating a likely file split."
+                    f"Segment {self.name}, function at vram {func_addr:X} (rom {func_rom_start:X}:{func_rom_end:X})"
+                    " ends with extra nops, indicating a likely file split."
                 )
                 print(
                     "File split suggestions for this segment will follow in config yaml format:"

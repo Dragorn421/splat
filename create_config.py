@@ -31,14 +31,15 @@ options:
   find_file_boundaries: True
   header_encoding: {rom.header_encoding}
   # platform: n64
-  # undefined_funcs_auto: True
+  # create_undefined_funcs_auto: True
   # undefined_funcs_auto_path: undefined_funcs_auto.txt
-  # undefined_syms_auto: True
+  # create_undefined_syms_auto: True
   # undefined_syms_auto_path: undefined_syms_auto.txt
   # symbol_addrs_path: symbol_addrs.txt
-  # undefined_syms_path: undefined_syms.txt
   # asm_path: asm
+  # data_path: data
   # src_path: src
+  # asset_path: assets
   # build_path: build
   # extensions_path: tools/splat_ext
   # mips_abi_float_regs: o32
