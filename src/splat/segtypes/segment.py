@@ -599,6 +599,13 @@ class Segment:
 
     @property
     def vram_end(self) -> Optional[int]:
+        if 0 and self.type == "bss":
+            bss_siblings = [_ss for _ss in self.parent.subsegments if _ss.type == "bss"]
+            i = bss_siblings.index(self)
+            if i + 1 < len(bss_siblings):
+                return bss_siblings[i + 1].vram_start
+            else:
+                return bss_siblings[0].vram_start + self.parent.bss_size
         if self.vram_start is not None and self.size is not None:
             return self.vram_start + self.size
         else:
